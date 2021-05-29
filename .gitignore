@@ -1,0 +1,23 @@
+#ignore all .o files
+*.o
+#ignore .swp files
+*.swp
+
+#ignore bazel output
+/bazel-StateEstimation
+/bazel-bin
+/bazel-out
+/bazel-testlogs
+
+#ignore Eigen
+/Eigen
+/unsupported
+
+# ignore VScode
+/.vscode
+
+#ignore output logfile
+logfile.csv
+
+#ignore executable
+kf_test
