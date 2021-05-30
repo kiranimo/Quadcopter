@@ -9,6 +9,7 @@
 class ModuleManager {
 
   public:
+    ModuleManager();
     void AddModules(std::vector<BaseModule*> modules);
     void InitModules();
     void StartModules();
@@ -17,6 +18,7 @@ class ModuleManager {
    
     std::vector<BaseModule*> _modules;
 
+    ModuleData _module_data;
 };
 
 
