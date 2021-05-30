@@ -10,7 +10,8 @@ class ModuleManager {
 
   public:
     ModuleManager();
-    void AddModules(std::vector<BaseModule*> modules);
+    void AddModules(std::vector<BaseModule*> modules, 
+        std::vector<ModuleData*> module_data);
     void InitModules();
     void StartModules();
 
