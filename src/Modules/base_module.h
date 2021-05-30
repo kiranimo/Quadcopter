@@ -6,8 +6,12 @@
 #include <mutex>
 
 class ModuleData {
+
+};
+
+class ShareModuleData {
   public: 
-    ModuleData();
+    ShareModuleData();
     int GetCtr();
     void SetCtr(int val);
 
@@ -16,15 +20,14 @@ class ModuleData {
     std::mutex _m;
 };
 
-
 class BaseModule {
   public:
     BaseModule();
     BaseModule(std::string module_name);
     virtual void Init();
-    void Loop(ModuleData* data);
+    void Loop(ShareModuleData* data);
   private:
-    virtual void Poll(ModuleData* data);
+    virtual void Poll(ShareModuleData* data);
     void CreateTimer(std::string timer_name);
     
     std::string _module_name;

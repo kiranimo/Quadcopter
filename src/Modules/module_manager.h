@@ -18,7 +18,7 @@ class ModuleManager {
    
     std::vector<BaseModule*> _modules;
 
-    ModuleData _module_data;
+    ShareModuleData _module_data;
 };
 
 

@@ -1,15 +1,15 @@
 #include "base_module.h"
 
-ModuleData::ModuleData() {
+ShareModuleData::ShareModuleData() {
   _ctr = 0;
 }
 
-int ModuleData::GetCtr() {
+int ShareModuleData::GetCtr() {
   std::lock_guard<std::mutex> lg(_m);
   return _ctr;
 }
 
-void ModuleData::SetCtr(int val) {
+void ShareModuleData::SetCtr(int val) {
   std::lock_guard<std::mutex> lg(_m);
   _ctr = val;
 }
@@ -24,14 +24,14 @@ void BaseModule::Init() {
   std::cout << "Initializing module: " << _module_name << "\n" << std::endl;
 }
 
-void BaseModule::Poll(ModuleData* data) {
+void BaseModule::Poll(ShareModuleData* data) {
   int ctr = data->GetCtr();
   ctr++;
   data->SetCtr(ctr);
   std::cout << "Module: " << _module_name << " increased ctr to: " << data->GetCtr() << std::endl;
 }
 
-void BaseModule::Loop(ModuleData* data) {
+void BaseModule::Loop(ShareModuleData* data) {
   
   for (int i = 0; i < 20; i++)  {
     Poll(data);
