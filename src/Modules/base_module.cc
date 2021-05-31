@@ -1,8 +1,5 @@
 #include "base_module.h"
-
-// BaseModule::BaseModule(std::string module_name) {
-//   _module_name = module_name;
-// }
+// Generic implementation of BaseModule
 
 std::shared_ptr<ModuleData> BaseModule::Init() {
   std::cout << "Initializing module: " << _module_name << "\n" << std::endl;
@@ -14,11 +11,10 @@ void BaseModule::Poll(ModuleDataWrapper* data) {
 }
 
 void BaseModule::Loop(ModuleDataWrapper* data) {
-  for (int i = 0; i < 5; i++)  {
+  // TODO: kirencaldwell - this eventually should become a while loop
+  // that runs until the program is terminated.
+  for (int i = 0; i < 1000; i++)  {
     Poll(data);
   }
 }
 
-void BaseModule::CreateTimer(std::string timer_name) {
-
-}
