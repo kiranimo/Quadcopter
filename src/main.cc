@@ -1,9 +1,11 @@
 #include <iostream>       // std::cout
 #include <vector>
-#include "Modules/module_data_wrapper.h"
 #include <memory>
+
 #include "Modules/base_module.h"
 #include "Modules/module_manager.h"
+#include "Modules/module_data_wrapper.h"
+
 #include "Modules/controls_module.h"
 #include "Modules/simulation_module.h"
 
@@ -25,8 +27,7 @@ int main() {
 
   // start modules
   manager.StartModules();
-
-
+  
   return 0;
 }
 
