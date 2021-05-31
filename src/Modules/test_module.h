@@ -14,7 +14,13 @@ class TestModule : public BaseModule {
       _module_name = module_name;
       _module_rw_name = module_rw_name;
     }
-    void Init() override {
+    std::shared_ptr<ModuleData> Init() override {
+      TestModuleDataType test_data;
+      test_data.dt = 0.;
+
+      std::shared_ptr<ModuleData> out = std::make_shared<ModuleData>(_module_name);
+      out.get()->push(test_data);
+      return out;
     }
   protected:
     void Poll(ModuleDataWrapper* data) override {

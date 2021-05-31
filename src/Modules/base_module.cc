@@ -4,8 +4,10 @@
 //   _module_name = module_name;
 // }
 
-void BaseModule::Init() {
+std::shared_ptr<ModuleData> BaseModule::Init() {
   std::cout << "Initializing module: " << _module_name << "\n" << std::endl;
+  std::shared_ptr<ModuleData> out = std::make_shared<ModuleData>("base_module");
+  return out;
 }
 
 void BaseModule::Poll(ModuleDataWrapper* data) {

@@ -19,6 +19,15 @@ cc_library(
     visibility = ["//src:__pkg__"],
 )
 
+test_suite(
+    name = "module_tests",
+    tests = [
+           "module_data_wrapper_test",
+           "base_module_test",
+           "module_manager_test",
+           ],
+)
+
 cc_test(
     name = "module_data_wrapper_test",
     size = "small",

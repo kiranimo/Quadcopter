@@ -12,8 +12,7 @@ class ModuleManager {
 
   public:
     ModuleManager();
-    void AddModule(std::unique_ptr<BaseModule> module,
-                   std::shared_ptr<ModuleData> module_data); 
+    void AddModule(std::unique_ptr<BaseModule> module);
     void InitModules();
     void StartModules();
 

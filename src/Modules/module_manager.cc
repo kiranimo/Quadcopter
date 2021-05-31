@@ -4,15 +4,13 @@ ModuleManager::ModuleManager() {
    
 }
 
-void ModuleManager::AddModule(std::unique_ptr<BaseModule> module,
-   std::shared_ptr<ModuleData> module_data) {
+void ModuleManager::AddModule(std::unique_ptr<BaseModule> module) {
   _modules.push_back(std::move(module));
-  _module_data_wrapper.AddModuleData(module_data);
 }
 
 void ModuleManager::InitModules() {
   for (int i = 0; i < (int)_modules.size(); i++) {
-    _modules[i].get()->Init();
+    _module_data_wrapper.AddModuleData(_modules[i].get()->Init());
   } 
 }
 

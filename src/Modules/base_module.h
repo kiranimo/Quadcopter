@@ -3,12 +3,12 @@
 
 #include <vector>
 #include <iostream>
+#include <memory>
 #include "module_data_wrapper.h"
 
 class BaseModule {
   public:
-    // BaseModule(std::string module_name);
-    virtual void Init();
+    virtual std::shared_ptr<ModuleData> Init();
     void Loop(ModuleDataWrapper* data);
   protected:
     virtual void Poll(ModuleDataWrapper* data);

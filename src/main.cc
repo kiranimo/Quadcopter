@@ -24,8 +24,8 @@ int main() {
   std::unique_ptr<BaseModule> test_module2(new TestModule("test_module2", "test_module1"));
 
   ModuleManager manager;
-  manager.AddModule(std::move(test_module1), test_module_data1);
-  manager.AddModule(std::move(test_module2), test_module_data2);
+  manager.AddModule(std::move(test_module1)); //, test_module_data1);
+  manager.AddModule(std::move(test_module2)); //, test_module_data2);
 
   manager.InitModules();
   manager.StartModules();
