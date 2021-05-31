@@ -6,6 +6,7 @@
 #include <memory>
 #include "module_data_wrapper.h"
 
+// Generic module type for all other modules to be derived from.
 class BaseModule {
   public:
     // Generic template for initialization, should return the module
