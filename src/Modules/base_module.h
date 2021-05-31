@@ -10,11 +10,11 @@ class BaseModule {
   public:
     virtual std::shared_ptr<ModuleData> Init();
     void Loop(ModuleDataWrapper* data);
+    std::string _module_name;
   protected:
     virtual void Poll(ModuleDataWrapper* data);
     void CreateTimer(std::string timer_name);
     
-    std::string _module_name;
 };
 
 

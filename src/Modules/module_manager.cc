@@ -16,9 +16,10 @@ void ModuleManager::InitModules() {
 
 void ModuleManager::StartModules() {
 
-  std::cout << "Starting threads\n" << std::endl;
+  std::cout << "Starting threads" << std::endl;
   std::vector<std::thread> module_threads;
   for (int i = 0; i < (int)_modules.size(); i++) {
+    std::cout << "Starting " << _modules[i].get()->_module_name << std::endl;
     module_threads.push_back(
         std::thread(&BaseModule::Loop, _modules[i].get(), &_module_data_wrapper));
   }
