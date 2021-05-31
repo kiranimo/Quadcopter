@@ -4,22 +4,24 @@
 #include <vector>
 #include <thread>
 #include <iostream>
+#include <memory>
 #include "base_module.h"
+#include "module_data_wrapper.h"
 
 class ModuleManager {
 
   public:
     ModuleManager();
-    void AddModules(std::vector<BaseModule*> modules, 
-        std::vector<ModuleData*> module_data);
+    void AddModule(std::unique_ptr<BaseModule> module,
+                   std::shared_ptr<ModuleData> module_data); 
     void InitModules();
     void StartModules();
 
   private:
    
-    std::vector<BaseModule*> _modules;
+    std::vector<std::unique_ptr<BaseModule>> _modules;
 
-    ShareModuleData _module_data;
+    ModuleDataWrapper _module_data_wrapper;
 };
 
 

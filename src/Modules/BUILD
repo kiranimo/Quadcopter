@@ -2,14 +2,17 @@ load("@rules_cc//cc:defs.bzl", "cc_test")
 
 cc_library(
     name = "modules",
-    srcs = ["base_module.cc",
+    srcs = [
+            "base_module.cc",
             "module_manager.cc",
-            "share_module_data.cc",
+            "module_data_wrapper.cc",
            # "controls_module.cc",
             ],
-    hdrs = ["base_module.h",
+    hdrs = [
+            "base_module.h",
             "module_manager.h",
-            "share_module_data.h",
+            "module_data_wrapper.h",
+            "test_module.h",
            # "controls_module.h",
             ],
     linkopts = ["-pthread"],
@@ -17,9 +20,9 @@ cc_library(
 )
 
 cc_test(
-    name = "share_module_data_test",
+    name = "module_data_wrapper_test",
     size = "small",
-    srcs = ["share_module_data_test.cc",],
+    srcs = ["module_data_wrapper_test.cc",],
     deps = ["@com_google_googletest//:gtest_main",
             "//src/Modules:modules"],
 )

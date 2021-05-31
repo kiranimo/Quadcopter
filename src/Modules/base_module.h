@@ -3,16 +3,15 @@
 
 #include <vector>
 #include <iostream>
-#include "share_module_data.h"
+#include "module_data_wrapper.h"
 
 class BaseModule {
   public:
-    BaseModule();
-    BaseModule(std::string module_name);
+    // BaseModule(std::string module_name);
     virtual void Init();
-    void Loop(ShareModuleData* data);
+    void Loop(ModuleDataWrapper* data);
   protected:
-    virtual void Poll(ShareModuleData* data);
+    virtual void Poll(ModuleDataWrapper* data);
     void CreateTimer(std::string timer_name);
     
     std::string _module_name;
