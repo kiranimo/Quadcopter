@@ -50,8 +50,6 @@ private:
 class ModuleDataWrapper{
   public: 
     
-    void LockData(); 
-    void UnlockData();
     void AddModuleData(std::shared_ptr<ModuleData> module_data);
     ModuleData* GetModuleData(std::string module_name);
     void SetModuleData(std::shared_ptr<ModuleData> module_data, std::string module_name); 
