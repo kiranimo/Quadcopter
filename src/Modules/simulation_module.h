@@ -11,20 +11,16 @@
 using Eigen::VectorXd;
 using Eigen::MatrixXd;
 
-struct SimulationModuleDataType {
-  VectorXd x;
-  VectorXd v;
-};
-
 class SimulationModule : public BaseModule {
   public:
     SimulationModule();
-    std::shared_ptr<ModuleData> Init() override;
+    void Init(std::shared_ptr<ModuleDataCollection> data) override;
 
   private:
-    void Poll(ModuleDataWrapper* mdw) override;
-    SimulationModuleDataType _simulation_data;
+    void Poll(std::shared_ptr<ModuleDataCollection> mdw) override;
     double _dt;
+    VectorXd _x;
+    VectorXd _v;
     VectorXd _u;
 };
 

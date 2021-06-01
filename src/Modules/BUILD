@@ -5,15 +5,14 @@ cc_library(
     srcs = [
             "base_module.cc",
             "module_manager.cc",
-            "module_data_wrapper.cc",
             "controls_module.cc",
             "simulation_module.cc",
             ],
     hdrs = [
             "base_module.h",
             "module_manager.h",
-            "module_data_wrapper.h",
-            "test_module.h",
+            "module_data.h",
+            # "test_module.h",
             "controls_module.h",
             "simulation_module.h",
             ],

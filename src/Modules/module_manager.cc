@@ -8,7 +8,7 @@ void ModuleManager::AddModule(std::unique_ptr<BaseModule> module) {
 void ModuleManager::InitModules() {
   // Initialize module and add module specific datatype to container.
   for (int i = 0; i < (int)_modules.size(); i++) {
-    _module_data_wrapper.AddModuleData(_modules[i].get()->Init());
+    _modules[i].get()->Init(_module_data_container);
   } 
 }
 
@@ -21,7 +21,7 @@ void ModuleManager::StartModules() {
     std::cout << "Starting " << _modules[i].get()->_module_name << std::endl;
     // initialize threads
     module_threads.push_back(
-        std::thread(&BaseModule::Loop, _modules[i].get(), &_module_data_wrapper));
+        std::thread(&BaseModule::Loop, _modules[i].get(), _module_data_container));
   }
  
   // join threads

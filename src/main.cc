@@ -4,8 +4,7 @@
 
 #include "Modules/base_module.h"
 #include "Modules/module_manager.h"
-#include "Modules/module_data_wrapper.h"
-
+#include "Modules/module_data.h"
 #include "Modules/controls_module.h"
 #include "Modules/simulation_module.h"
 

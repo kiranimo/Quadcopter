@@ -17,11 +17,10 @@ struct ControlsModuleDataType {
 class ControlsModule : public BaseModule {
   public:
     ControlsModule();
-    std::shared_ptr<ModuleData> Init() override;
+    void Init(std::shared_ptr<ModuleDataCollection> data) override;
 
   private:
-    void Poll(ModuleDataWrapper* mdw) override;
-    ControlsModuleDataType _controls_data;
+    void Poll(std::shared_ptr<ModuleDataCollection> data) override;
     VectorXd _x;
     VectorXd _v;
 };

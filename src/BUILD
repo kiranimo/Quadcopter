@@ -3,7 +3,9 @@ load("@rules_cc//cc:defs.bzl", "cc_test")
 cc_binary (
     name = "main",
     srcs = ["main.cc"],
-    deps = ["//src/Modules:modules"],
+    deps = [
+            "//src/Modules:modules",
+            ],
     linkopts = ["-pthread"],
 )
 

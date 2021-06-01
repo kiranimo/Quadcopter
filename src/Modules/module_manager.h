@@ -6,7 +6,7 @@
 #include <iostream>
 #include <memory>
 #include "base_module.h"
-#include "module_data_wrapper.h"
+#include "module_data.h"
 
 // Class responsible for managing the instatiation and running of
 // all derived modules.
@@ -31,7 +31,7 @@ class ModuleManager {
     std::vector<std::unique_ptr<BaseModule>> _modules;
 
     // Container for all module specific data 
-    ModuleDataWrapper _module_data_wrapper;
+    std::shared_ptr<ModuleDataCollection> _module_data_container = std::make_shared<ModuleDataCollection>();
 };
 
 
