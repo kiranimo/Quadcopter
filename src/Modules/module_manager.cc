@@ -28,6 +28,6 @@ void ModuleManager::StartModules() {
   for (auto &th : module_threads) {
     th.join();
   }
-  
+  std::cout << "========= Finished Running ==========" << std::endl;  
 }
 

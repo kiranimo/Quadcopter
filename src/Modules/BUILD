@@ -13,7 +13,7 @@ cc_library(
             "base_module.h",
             "module_manager.h",
             "module_data.h",
-            # "test_module.h",
+            "test_module.h",
             "controls_module.h",
             "simulation_module.h",
             "print_module.h",

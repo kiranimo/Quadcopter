@@ -12,7 +12,7 @@
 // Generic module type for all other modules to be derived from.
 class BaseModule {
   public:
-    // Generic template for initialization, should return the module
+    // Generic template for initialization, should intialize the module
     // specific datatype. 
     virtual void Init(std::shared_ptr<ModuleDataCollection> data);
 
