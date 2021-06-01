@@ -2,6 +2,7 @@
 
 SimulationModule::SimulationModule() {
   _module_name = "Simulation Module";
+  _module_period_ms = std::chrono::milliseconds(1);
 }
 
 void SimulationModule::Init(std::shared_ptr<ModuleDataCollection> data) {

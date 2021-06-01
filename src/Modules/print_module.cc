@@ -5,6 +5,7 @@ PrintModule::PrintModule() {
 }
 
 void PrintModule::Init(std::shared_ptr<ModuleDataCollection> data) {
+  _module_period_ms = std::chrono::milliseconds(500);
 }
 
 void PrintModule::Poll(std::shared_ptr<ModuleDataCollection> data) {

@@ -6,6 +6,7 @@
 #include <memory>
 #include <chrono>
 #include <thread>
+#include <ratio>
 #include "module_data.h"
 
 // Generic module type for all other modules to be derived from.
@@ -31,11 +32,18 @@ class BaseModule {
     // information.
     virtual void Poll(std::shared_ptr<ModuleDataCollection> data);
 
-    // mutex to lock data being passed around
-    std::mutex _module_mutex;
+    // return module runtime
+    // TODO: kirencaldwell - actually implement this freaking function
+    auto GetRuntime();
 
     // default refresh rate is 200Hz
     std::chrono::milliseconds _module_period_ms = std::chrono::milliseconds(5);
+    // initial time module is started
+    std::chrono::time_point<std::chrono::steady_clock> _start_time;
+
+    // mutex to lock data being passed around
+    std::mutex _module_mutex;
+
 };
 
 #endif
