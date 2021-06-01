@@ -14,7 +14,6 @@ void SimulationModule::Init(std::shared_ptr<ModuleDataCollection> data) {
   std::lock_guard<std::mutex> guard(_module_mutex);
   data->simulation_data.x = _x;
   data->simulation_data.v = _v;
-  std::cout << data-> simulation_data.x << std::endl;
 }
 
 void SimulationModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
@@ -28,5 +27,5 @@ void SimulationModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
   
   data->simulation_data.x = data->simulation_data.x + _dt*data->simulation_data.v;
   data->simulation_data.v = data->simulation_data.v + _dt*v_dot; 
-  std::cout << "u = " << data->controls_data.u << std::endl;
+  data->simulation_data.simulation_time += _dt;
 }

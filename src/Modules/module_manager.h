@@ -18,7 +18,7 @@ class ModuleManager {
     void AddModule(std::unique_ptr<BaseModule> module);
 
     // Go through and initialize all of the modules. This also
-    // adds the module specific data to the shared wrapper.
+    // adds the module specific data to the shared container.
     void InitModules();
 
     // Create and start threads for each module, and have them

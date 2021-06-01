@@ -1,5 +1,5 @@
-#ifndef SIMULATION_MODULE_H
-#define SIMULATION_MODULE_H
+#ifndef PRINT_MODULE_H
+#define PRINT_MODULE_H
 
 #include <eigen3/Eigen/Dense>
 #include <vector>
@@ -10,17 +10,16 @@
 using Eigen::VectorXd;
 using Eigen::MatrixXd;
 
-class SimulationModule : public BaseModule {
+class PrintModule : public BaseModule {
   public:
-    SimulationModule();
+    PrintModule();
     void Init(std::shared_ptr<ModuleDataCollection> data) override;
 
   private:
-    void Poll(std::shared_ptr<ModuleDataCollection> mdw) override;
-    double _dt;
-    VectorXd _x;
-    VectorXd _v;
-    VectorXd _u;
+    void Poll(std::shared_ptr<ModuleDataCollection> data) override;
+
 };
 
 #endif
+
+

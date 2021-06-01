@@ -23,6 +23,7 @@ class ControlsModule : public BaseModule {
     void Poll(std::shared_ptr<ModuleDataCollection> data) override;
     VectorXd _x;
     VectorXd _v;
+    double _current_time;
 };
 
 #endif

@@ -18,6 +18,7 @@ struct ControlsData {
 struct SimulationData {
   VectorXd x;
   VectorXd v;
+  double simulation_time = 0.;
 };
 
 

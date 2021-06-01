@@ -7,6 +7,7 @@ cc_library(
             "module_manager.cc",
             "controls_module.cc",
             "simulation_module.cc",
+            "print_module.cc",
             ],
     hdrs = [
             "base_module.h",
@@ -15,6 +16,7 @@ cc_library(
             # "test_module.h",
             "controls_module.h",
             "simulation_module.h",
+            "print_module.h",
             ],
     linkopts = ["-pthread"],
     visibility = ["//src:__pkg__"],
