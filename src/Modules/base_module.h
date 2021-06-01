@@ -22,6 +22,9 @@ class BaseModule {
     // information.
     void Loop(std::shared_ptr<ModuleDataCollection> data);
 
+    void SetModuleRuntime(std::chrono::milliseconds total_runtime);
+    std::chrono::milliseconds GetModulePeriod();
+
     // TODO: kirencaldwell - should probably make a getter for this.
     // Module name.
     std::string _module_name;
@@ -36,6 +39,8 @@ class BaseModule {
     // TODO: kirencaldwell - actually implement this freaking function
     auto GetRuntime();
 
+    // default runtime is 5 seconds
+    std::chrono::milliseconds _total_runtime = std::chrono::milliseconds(5000);
     // default refresh rate is 200Hz
     std::chrono::milliseconds _module_period_ms = std::chrono::milliseconds(5);
     // initial time module is started

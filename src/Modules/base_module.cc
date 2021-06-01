@@ -11,14 +11,10 @@ void BaseModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
 void BaseModule::Loop(std::shared_ptr<ModuleDataCollection> data) {
   // get start time
   _start_time = std::chrono::steady_clock::now();
+  // get current time
   auto now = std::chrono::steady_clock::now();
-  // how long should we run for
-  // TODO: kirencaldwell - don't hardcode this shit
-  auto runtime = std::chrono::seconds(5);
   
-  // TODO: kirencaldwell - this eventually should become a while loop
-  // that runs until the program is terminated.
-  while (now-_start_time < runtime)  {
+  while (now-_start_time < _total_runtime)  {
     Poll(data);
 
     // wait until the next period start
@@ -29,3 +25,12 @@ void BaseModule::Loop(std::shared_ptr<ModuleDataCollection> data) {
   }
 }
 
+// set the total runtime for this module
+void BaseModule::SetModuleRuntime(std::chrono::milliseconds total_runtime) {
+  _total_runtime = total_runtime;
+}
+
+// get the module period
+std::chrono::milliseconds BaseModule::GetModulePeriod() {
+  return _module_period_ms;
+}
