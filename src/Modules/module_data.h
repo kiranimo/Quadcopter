@@ -12,7 +12,8 @@
 using Eigen::VectorXd;
 using Eigen::MatrixXd;
 
-
+// TODO: kirencaldwell - these data classes should be generalized,
+// especially the logging thing
 class ControlsData {
   public:
     VectorXd u = VectorXd::Zero(3);

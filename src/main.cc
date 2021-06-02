@@ -27,7 +27,6 @@ int main() {
   manager.AddModule(std::move(print_module));
   manager.AddModule(std::move(logging_module));
 
-
   // init modules
   manager.InitModules();
 
