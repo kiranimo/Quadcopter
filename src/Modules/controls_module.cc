@@ -18,9 +18,7 @@ void ControlsModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
   _x = data->simulation_data.x;
   _v = data->simulation_data.v;
 
-  if (_current_time < data->simulation_data.simulation_time) {
-    _current_time = data->simulation_data.simulation_time;
-    data->controls_data.u = -5*(data->simulation_data.x-0.5*VectorXd::Ones(3)) - 4*data->simulation_data.v;
-  }
+  data->controls_data.u = -5*(data->simulation_data.x-0.5*VectorXd::Ones(3)) - 4*data->simulation_data.v;
+  
   
 }

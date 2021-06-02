@@ -17,12 +17,14 @@ using Eigen::MatrixXd;
 class ControlsData {
   public:
     VectorXd u = VectorXd::Zero(3);
+    double dt = 0.;
 
     TelemetryLogging tlm;
     
     ControlsData() {
       tlm.OpenFile("controls_module.csv");
       tlm.AddSignal("u", &u);
+      tlm.AddSignal("dt", &dt);
       tlm.CreateLogHeader();
     };
     ~ControlsData() {
@@ -34,14 +36,16 @@ class SimulationData {
   public:
     VectorXd x;
     VectorXd v;
-    double simulation_time = 0.;
+    double t = 0.;
+    double dt = 0.;
 
     TelemetryLogging tlm;
     SimulationData() {
       tlm.OpenFile("simulation_module.csv");
       tlm.AddSignal("x", &x);
       tlm.AddSignal("v", &v);
-      tlm.AddSignal("t", &simulation_time);
+      tlm.AddSignal("t", &t);
+      tlm.AddSignal("dt", &dt);
       tlm.CreateLogHeader();
     };
     ~SimulationData() {

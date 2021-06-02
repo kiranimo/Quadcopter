@@ -37,7 +37,7 @@ class BaseModule {
 
     // return module runtime
     // TODO: kirencaldwell - actually implement this freaking function
-    auto GetRuntime();
+    double GetRuntimeMilliseconds();
 
     // default runtime is 5 seconds
     std::chrono::milliseconds _total_runtime = std::chrono::milliseconds(5000);
@@ -45,6 +45,8 @@ class BaseModule {
     std::chrono::milliseconds _module_period_ms = std::chrono::milliseconds(5);
     // initial time module is started
     std::chrono::time_point<std::chrono::steady_clock> _start_time;
+    // time between calls to Poll (ms)
+    double _dt_ms = 0.005;
 
     // mutex to lock data being passed around
     std::mutex _module_mutex;

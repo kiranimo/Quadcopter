@@ -26,7 +26,7 @@ void SimulationModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
 
   VectorXd v_dot = -2*_x - 0.5*_v + _u;
   
-  data->simulation_data.x = data->simulation_data.x + _dt*data->simulation_data.v;
-  data->simulation_data.v = data->simulation_data.v + _dt*v_dot; 
-  data->simulation_data.simulation_time += _dt;
+  data->simulation_data.x = data->simulation_data.x + _dt_ms/1000*data->simulation_data.v;
+  data->simulation_data.v = data->simulation_data.v + _dt_ms/1000*v_dot; 
+  data->simulation_data.t += _dt_ms/1000;
 }
