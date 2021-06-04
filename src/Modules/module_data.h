@@ -14,42 +14,40 @@ using Eigen::MatrixXd;
 
 // TODO: kirencaldwell - these data classes should be generalized,
 // especially the logging thing
-class ControlsData {
+class ControlsData : public TelemetryLogging {
   public:
     VectorXd u = VectorXd::Zero(3);
     double dt = 0.;
 
-    TelemetryLogging tlm;
-    
     ControlsData() {
-      tlm.OpenFile("controls_module.csv");
-      tlm.AddSignal("u", &u);
-      tlm.AddSignal("dt", &dt);
-      tlm.CreateLogHeader();
+      OpenFile("controls_module.csv");
+      AddSignal("u", &u);
+      AddSignal("dt", &dt);
+      CreateLogHeader();
     };
     ~ControlsData() {
-      tlm.EndLogging();
+      EndLogging();
     };
 };
 
-class SimulationData {
+class SimulationData : public TelemetryLogging {
   public:
     VectorXd x;
     VectorXd v;
     double t = 0.;
     double dt = 0.;
 
-    TelemetryLogging tlm;
     SimulationData() {
-      tlm.OpenFile("simulation_module.csv");
-      tlm.AddSignal("x", &x);
-      tlm.AddSignal("v", &v);
-      tlm.AddSignal("t", &t);
-      tlm.AddSignal("dt", &dt);
-      tlm.CreateLogHeader();
+      J = MatrixXd::Zero(3,3);
+      OpenFile("simulation_module.csv");
+      AddSignal("pos", &x);
+      AddSignal("vel", &v);
+      AddSignal("t", &t);
+      AddSignal("dt", &dt);
+      CreateLogHeader();
     };
     ~SimulationData() {
-      tlm.EndLogging();
+      EndLogging();
     };
 };
 

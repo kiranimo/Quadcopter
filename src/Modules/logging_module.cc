@@ -13,6 +13,6 @@ void LoggingModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
   std::lock_guard<std::mutex> guard(_module_mutex);
 
   // log data
-  data->controls_data.tlm.LogSignals();
-  data->simulation_data.tlm.LogSignals();
+  data->controls_data.LogSignals();
+  data->simulation_data.LogSignals();
 }
