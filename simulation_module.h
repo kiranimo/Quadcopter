@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <chrono>
-#include "base_module.h"
+#include "src/base_module.h"
 
 using Eigen::VectorXd;
 using Eigen::MatrixXd;

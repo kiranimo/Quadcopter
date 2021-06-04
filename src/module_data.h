@@ -38,7 +38,6 @@ class SimulationData : public TelemetryLogging {
     double dt = 0.;
 
     SimulationData() {
-      J = MatrixXd::Zero(3,3);
       OpenFile("simulation_module.csv");
       AddSignal("pos", &x);
       AddSignal("vel", &v);

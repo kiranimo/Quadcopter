@@ -2,13 +2,13 @@
 #include <vector>
 #include <memory>
 
-#include "Modules/base_module.h"
-#include "Modules/module_manager.h"
-#include "Modules/module_data.h"
-#include "Modules/controls_module.h"
-#include "Modules/simulation_module.h"
-#include "Modules/print_module.h"
-#include "Modules/logging_module.h"
+#include "src/base_module.h"
+#include "src/module_manager.h"
+#include "src/module_data.h"
+#include "controls_module.h"
+#include "simulation_module.h"
+#include "src/print_module.h"
+#include "src/logging_module.h"
 
 int main() {
 

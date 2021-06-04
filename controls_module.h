@@ -4,8 +4,7 @@
 #include <eigen3/Eigen/Dense>
 #include <vector>
 #include <iostream>
-#include "base_module.h"
-#include "simulation_module.h"
+#include "src/base_module.h"
 
 using Eigen::VectorXd;
 using Eigen::MatrixXd;

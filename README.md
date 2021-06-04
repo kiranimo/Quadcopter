@@ -6,18 +6,18 @@ Concurrent Module Framework
 make sure bazel is installed
 
 Build modules:
-bazel build src/Modules:modules
+bazel build src:modules
 
 Test modules:
-bazel test src/Modules:module_tests
+bazel test src:module_tests
 
-Look at src/Modules/BUILD to see individual tests
+Look at src/BUILD to see individual tests
 
 Build main:
-bazel build src:main
+bazel build main
 
 Build and run main:
-bazel run src:main
+bazel run main
 
 ==========================================
 
