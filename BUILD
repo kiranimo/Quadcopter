@@ -1,50 +1,30 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
-cc_library(
-    name = "modules",
+cc_binary (
+    name = "main",
     srcs = [
-            "base_module.cc",
-            "module_manager.cc",
-            "telemetry_logging.cc",
-            ],
-    hdrs = [
-            "base_module.h",
-            "module_manager.h",
-            "module_data.h",
-            "test_module.h",
-            "telemetry_logging.h",
+           "main.cc",
+           ],
+    deps = [
+            "//src:modules",
+            "//:example",
             ],
     linkopts = ["-pthread"],
-    visibility = ["//visibility:public"],
 )
 
-test_suite(
-    name = "module_tests",
-    tests = [
-           "module_data_test",
-           "base_module_test",
-           "module_manager_test",
-           ],
+cc_library(
+    name = "example",
+    srcs = [
+          "controls_module.cc",
+          "simulation_module.cc",
+          ],
+    hdrs = [
+          "controls_module.h",
+          "simulation_module.h",
+          ],
+    deps = [
+            "//src:modules",
+            ],
+    linkopts = ["-pthread"],
 )
 
-cc_test(
-    name = "module_data_test",
-    size = "small",
-    srcs = ["module_data_test.cc",],
-    deps = ["@com_google_googletest//:gtest_main",
-            "//src:modules"],
-)
-cc_test(
-    name = "base_module_test",
-    size = "small",
-    srcs = ["base_module_test.cc",],
-    deps = ["@com_google_googletest//:gtest_main",
-            "//src:modules"],
-)
-cc_test(
-    name = "module_manager_test",
-    size = "small",
-    srcs = ["module_manager_test.cc",],
-    deps = ["@com_google_googletest//:gtest_main",
-            "//src:modules"],
-)

@@ -8,11 +8,6 @@
 #include <thread>
 #include <ratio>
 #include "module_data.h"
-#include "telemetry_logging.h"
-
-class BaseModuleData : public TelemetryLogging {
-
-};
 
 // Generic module type for all other modules to be derived from.
 class BaseModule {
