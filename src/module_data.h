@@ -5,57 +5,48 @@
 #include <iostream>
 #include <mutex>
 #include <memory>
-#include <eigen3/Eigen/Dense>
 #include <variant>
-#include "telemetry_logging.h"
+#include <any>
+#include <map>
+#include <typeinfo>
 
-using Eigen::VectorXd;
-using Eigen::MatrixXd;
-
-// TODO: kirencaldwell - these data classes should be generalized,
-// especially the logging thing
-class ControlsData : public TelemetryLogging {
-  public:
-    VectorXd u = VectorXd::Zero(3);
-    double dt = 0.;
-
-    ControlsData() {
-      OpenFile("controls_module.csv");
-      AddSignal("u", &u);
-      AddSignal("dt", &dt);
-      CreateLogHeader();
-    };
-    ~ControlsData() {
-      EndLogging();
-    };
-};
-
-class SimulationData : public TelemetryLogging {
-  public:
-    VectorXd x;
-    VectorXd v;
-    double t = 0.;
-    double dt = 0.;
-
-    SimulationData() {
-      OpenFile("simulation_module.csv");
-      AddSignal("pos", &x);
-      AddSignal("vel", &v);
-      AddSignal("t", &t);
-      AddSignal("dt", &dt);
-      CreateLogHeader();
-    };
-    ~SimulationData() {
-      EndLogging();
-    };
-};
-
-
+// Container for module specific data. This gets is meant to get filled in
+// when the modules are initializing.
 class ModuleDataCollection {
   public:
-    ControlsData controls_data;
-    SimulationData simulation_data;
 
+    // setter based on module name
+    // TODO: kirencaldwell - investigate if it's worth auto assigning by module data type
+    // instead of by name
+    void SetModuleData(std::any module_data, std::string module_name) {
+      _all_data[module_name] = module_data;
+    };
+
+    // getter, user must match the template type with the type 
+    // with that key
+    template <class T>
+    T GetModuleData(std::string module_name) {
+      T out;
+      // for some reason this was erroring, so wrapped it in a try-catch
+      try {
+        out = std::any_cast<T>(_all_data[module_name]);
+      }
+      catch(const std::bad_any_cast &e) {
+        std::cout << e.what() << "\n" << std::endl;
+      }
+      // return whatever we have
+      // TODO: kirencaldwell - inform the user that their data is bad
+      return out;
+    };
+
+    // add new module data to container
+    void AddModuleData(std::any module_data, std::string module_name) {
+      _all_data[module_name] = module_data;
+    };
+
+  private:
+    // container for module data
+    std::map<std::string, std::any> _all_data;    
 };
 
 

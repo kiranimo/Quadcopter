@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <iostream>
 
+#include "module_data.h"
 #include "base_module.h"
 #include "test_module.h"
 

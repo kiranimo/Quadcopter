@@ -5,12 +5,13 @@
 #include <vector>
 #include <iostream>
 #include "src/base_module.h"
+#include "simulation_module.h"
 
 using Eigen::VectorXd;
 using Eigen::MatrixXd;
 
 struct ControlsModuleDataType {
-  VectorXd u;
+  double u;
 };
 
 class ControlsModule : public BaseModule {
@@ -20,9 +21,8 @@ class ControlsModule : public BaseModule {
 
   private:
     void Poll(std::shared_ptr<ModuleDataCollection> data) override;
-    VectorXd _x;
-    VectorXd _v;
-    double _current_time;
+    
+    ControlsModuleDataType _controls_data;
 };
 
 #endif

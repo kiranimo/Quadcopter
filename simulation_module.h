@@ -5,10 +5,19 @@
 #include <vector>
 #include <iostream>
 #include <chrono>
+
 #include "src/base_module.h"
+#include "controls_module.h"
 
 using Eigen::VectorXd;
 using Eigen::MatrixXd;
+
+class SimulationModuleDataType {
+  public:
+  double x;
+  double v;
+  double t;
+}; 
 
 class SimulationModule : public BaseModule {
   public:
@@ -17,10 +26,8 @@ class SimulationModule : public BaseModule {
 
   private:
     void Poll(std::shared_ptr<ModuleDataCollection> mdw) override;
-    double _dt;
-    VectorXd _x;
-    VectorXd _v;
-    VectorXd _u;
+    
+    SimulationModuleDataType _simulation_data;
 };
 
 #endif
