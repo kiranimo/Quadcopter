@@ -11,7 +11,7 @@ using Eigen::VectorXd;
 using Eigen::MatrixXd;
 
 struct ControlsModuleDataType {
-  double u;
+  VectorXd u = VectorXd::Zero(3);
 };
 
 class ControlsModule : public BaseModule {

@@ -1,12 +1,12 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
+
 cc_library(
     name = "modules",
     srcs = [
             "base_module.cc",
             "module_manager.cc",
             "telemetry_logging.cc",
-#            "logging_module.cc",
             ],
     hdrs = [
             "base_module.h",
@@ -14,7 +14,6 @@ cc_library(
             "module_data.h",
             "test_module.h",
             "telemetry_logging.h",
-#            "logging_module.h",
             ],
     linkopts = ["-pthread"],
     visibility = ["//visibility:public"],

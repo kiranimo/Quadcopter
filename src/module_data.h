@@ -27,11 +27,15 @@ class ModuleDataCollection {
     template <class T>
     T GetModuleData(std::string module_name) {
       T out;
+      std::cout << "" << std::endl;
       // for some reason this was erroring, so wrapped it in a try-catch
       try {
         out = std::any_cast<T>(_all_data[module_name]);
       }
       catch(const std::bad_any_cast &e) {
+        std::cout << e.what() << "\n" << std::endl;
+      }
+      catch(const std::bad_alloc &e) {
         std::cout << e.what() << "\n" << std::endl;
       }
       // return whatever we have
