@@ -53,9 +53,6 @@ class BaseModule {
     // time between calls to Poll (ms)
     double _dt_ms = 0.005;
 
-    // mutex to lock data being passed around
-    std::mutex _module_mutex;
-
 };
 
 #endif
