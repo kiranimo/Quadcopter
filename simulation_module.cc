@@ -11,13 +11,17 @@ void SimulationModule::Init(std::shared_ptr<ModuleDataCollection> data) {
   _simulation_data.v = 0;
   _simulation_data.t = 0;
 
-  std::lock_guard<std::mutex> guard(_module_mutex);
+  // std::lock_guard<std::mutex> guard(_module_mutex);
+  // std::scoped_lock(data.get()->data_mutex);
+  // std::lock_guard<std::mutex> g(data->mut);
   data->AddModuleData(_simulation_data, "simulation_data");
 }
 
 void SimulationModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
   
-  std::lock_guard<std::mutex> guard(_module_mutex);
+  // std::lock_guard<std::mutex> guard(_module_mutex);
+  // std::scoped_lock(data.get()->data_mutex);
+  // std::lock_guard<std::mutex> g(data->mut);
   VectorXd u = 
    data->GetModuleData<ControlsModuleDataType>("controls_data").u;
 

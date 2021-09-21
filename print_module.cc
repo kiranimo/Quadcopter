@@ -11,7 +11,7 @@ void PrintModule::Init(std::shared_ptr<ModuleDataCollection> data) {
 }
 
 void PrintModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
-  std::lock_guard<std::mutex> guard(_module_mutex);
+  // std::lock_guard<std::mutex> g(data->mut);
   std::cout << "===============================" << std::endl;
   std::cout << "t = " << 
     data->GetModuleData<SimulationModuleDataType>("simulation_data").t << std::endl;
