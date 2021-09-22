@@ -14,7 +14,6 @@
 // when the modules are initializing.
 class ModuleDataCollection {
   public:
-    std::mutex mut;
 
     // setter based on module name
     // TODO: kirencaldwell - investigate if it's worth auto assigning by module data type
@@ -22,7 +21,7 @@ class ModuleDataCollection {
     void SetModuleData(std::any module_data, std::string module_name) {
       // std::scoped_lock(data_mutex);
       std::lock_guard<std::mutex> g(mut);
-      _all_data.data[module_name] = module_data;
+      _data[module_name] = module_data;
     };
 
     // getter, user must match the template type with the type 
@@ -30,21 +29,22 @@ class ModuleDataCollection {
     template <class T>
     T GetModuleData(std::string module_name) {
       std::lock_guard<std::mutex> g(mut);
-      T out = std::any_cast<T>(_all_data.data[module_name]);
+      T out = std::any_cast<T>(_data[module_name]);
       return out;
     };
 
     // add new module data to container
     void AddModuleData(std::any module_data, std::string module_name) {
       // std::scoped_lock(data_mutex);
-      _all_data.data[module_name] = module_data;
+      _data[module_name] = module_data;
     };
 
   private:
+    // mutex for locking data when reading/writing
+    std::mutex mut;
+
     // container for module data
-    struct ModuleDataContainer {
-      std::map<std::string, std::any> data;    
-    } _all_data;
+    std::map<std::string, std::any> _data;    
 };
 
 
