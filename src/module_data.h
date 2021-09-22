@@ -19,7 +19,6 @@ class ModuleDataCollection {
     // TODO: kirencaldwell - investigate if it's worth auto assigning by module data type
     // instead of by name
     void SetModuleData(std::any module_data, std::string module_name) {
-      // std::scoped_lock(data_mutex);
       std::lock_guard<std::mutex> g(mut);
       _data[module_name] = module_data;
     };
@@ -35,7 +34,7 @@ class ModuleDataCollection {
 
     // add new module data to container
     void AddModuleData(std::any module_data, std::string module_name) {
-      // std::scoped_lock(data_mutex);
+      std::lock_guard<std::mutex> g(mut);
       _data[module_name] = module_data;
     };
 
