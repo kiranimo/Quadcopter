@@ -12,7 +12,7 @@ void ModuleManager::InitModules() {
   } 
 }
 
-void ModuleManager::StartModules() {
+void ModuleManager::StartModules(double time_gain) {
   std::cout << "Starting threads" << std::endl;
 
   // vector of threads
@@ -21,7 +21,7 @@ void ModuleManager::StartModules() {
     std::cout << "Starting " << _modules[i].get()->_module_name << std::endl;
     // initialize threads
     module_threads.push_back(
-        std::thread(&BaseModule::Loop, _modules[i].get(), _module_data_container));
+        std::thread(&BaseModule::Loop, _modules[i].get(), _module_data_container, time_gain));
   }
  
   // join threads

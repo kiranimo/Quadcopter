@@ -1,14 +1,5 @@
 load("@rules_cc//cc:defs.bzl", "cc_test")
 
-py_binary(
-    name = "create_new_module",
-    srcs = [
-            "create_new_module.py",
-           ],
-    data = ["base_module.h",],
-    visibility = ["//visibility:public"],
-)
-
 cc_library(
     name = "modules",
     srcs = [

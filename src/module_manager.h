@@ -23,7 +23,7 @@ class ModuleManager {
 
     // Create and start threads for each module, and have them
     // start their Loop().
-    void StartModules();
+    void StartModules(double time_gain=1.0);
 
   private:
    

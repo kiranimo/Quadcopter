@@ -25,7 +25,7 @@ class BaseModule {
     // the process managing all of the modules. Since Loop() calls
     // Poll(), we need to pass the variable containing all of the module
     // information.
-    void Loop(std::shared_ptr<ModuleDataCollection> data);
+    void Loop(std::shared_ptr<ModuleDataCollection> data, double time_gain);
 
     void SetModuleRuntime(std::chrono::milliseconds total_runtime);
     std::chrono::milliseconds GetModulePeriod();
