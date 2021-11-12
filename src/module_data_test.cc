@@ -1,30 +1,25 @@
 #include <gtest/gtest.h>
 #include <iostream>
 
+#include "base_module_data.h"
 #include "module_data.h"
 
-class TestData {
-  public:
-  int ctr = 0;
-  double time = 1.43;
-};
 
 TEST(ModuleDataTest, BasicFunctionality) {
   std::cout.flush();
 
-  TestData test_data;
+  BaseModuleData test_module_data;
+  test_module_data.Init("test_module_data");
+  test_module_data.Set<double>("time", 2.2);
 
   ModuleDataCollection mdc;
-  mdc.AddModuleData(test_data, "test_data");
-  test_data.time = 2.2;
-  TestData test_data_out = mdc.GetModuleData<TestData>("test_data");
-  EXPECT_EQ(test_data_out.ctr, 0);
-  EXPECT_EQ(test_data_out.time, 1.43);
-    
-  mdc.SetModuleData(test_data, "test_data");
-  test_data_out = mdc.GetModuleData<TestData>("test_data");
-  EXPECT_EQ(test_data_out.ctr, 0);
-  EXPECT_EQ(test_data_out.time, 2.2);
+  
+  mdc.AddModuleData(test_module_data, "test_data");
 
-  EXPECT_EQ(mdc.GetModuleData<TestData>("test_data").time, 2.2);
+  BaseModuleData test_data_out = mdc.GetModuleData("test_data");
+  EXPECT_EQ(test_data_out.Get<double>("time"), 2.2);
+  
+  test_data_out.Set<double>("time", 4);
+  mdc.SetModuleData(test_data_out, "test_data");
+  EXPECT_EQ(mdc.GetModuleData("test_data").Get<double>("time"), 4);
 }

@@ -1,29 +1,29 @@
 #include "simulation_module.h"
+#include <eigen3/Eigen/Dense>
+#include <chrono>
+
+using Eigen::VectorXd;
 
 SimulationModule::SimulationModule() {
-  _module_name = "Simulation Module";
+  _module_name = "simulation_module";
   _module_period_ms = std::chrono::milliseconds(1);
-}
-
-void SimulationModule::Init(std::shared_ptr<ModuleDataCollection> data) {
-  // Init simulation module data
-  _simulation_data.x = 1;
-  _simulation_data.v = 0;
-  _simulation_data.t = 0;
-
-  data->AddModuleData(_simulation_data, "simulation_data");
+  _module_data.Init(_module_name);
+  _module_data.Add<double>("x", 1);
+  _module_data.Add<double>("v", 0);
+  _module_data.Add<double>("t", 0);
 }
 
 void SimulationModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
   
   VectorXd u = 
-   data->GetModuleData<ControlsModuleDataType>("controls_data").u;
+   data->GetModuleData("controls_module").Get<VectorXd>("u");
+  double x = _module_data.Get<double>("x");
+  double v = _module_data.Get<double>("v");
+  double t = _module_data.Get<double>("t");
+  double v_dot = -2*x - 0.5*v + u[0];
 
-  double v_dot = -2*_simulation_data.x - 0.5*_simulation_data.v + u[0];
+  _module_data.Set<double>("x", x+_dt_ms/1000*v);
+  _module_data.Set<double>("v", v+_dt_ms/1000*v_dot);
+  _module_data.Set<double>("t", t+_dt_ms/1000);
 
-  _simulation_data.x += _dt_ms/1000*_simulation_data.v; 
-  _simulation_data.v += _dt_ms/1000*v_dot;  
-  _simulation_data.t += _dt_ms/1000;
-
-  data->SetModuleData(_simulation_data, "simulation_data");
 }

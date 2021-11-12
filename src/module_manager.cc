@@ -18,7 +18,7 @@ void ModuleManager::StartModules(double time_gain) {
   // vector of threads
   std::vector<std::thread> module_threads;
   for (int i = 0; i < (int)_modules.size(); i++) {
-    std::cout << "Starting " << _modules[i].get()->_module_name << std::endl;
+    std::cout << "Starting: " << _modules[i].get()->_module_name << std::endl;
     // initialize threads
     module_threads.push_back(
         std::thread(&BaseModule::Loop, _modules[i].get(), _module_data_container, time_gain));

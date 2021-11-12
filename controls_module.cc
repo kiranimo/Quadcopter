@@ -1,20 +1,20 @@
 #include "controls_module.h"
+#include <eigen3/Eigen/Dense>
+
+using Eigen::VectorXd;
 
 ControlsModule::ControlsModule() {
-  _module_name = "Controls Module";
-}
-
-void ControlsModule::Init(std::shared_ptr<ModuleDataCollection> data) {
-  // Initialize controls module data
-  _controls_data.u << 0, 0, 0;
-  data->AddModuleData(_controls_data, "controls_data"); 
+  _module_name = "controls_module";
+  _module_data.Init(_module_name);
+  _module_data.Add<VectorXd>("u", VectorXd::Zero(3));
 }
 
 void ControlsModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
-  double x = data->GetModuleData<SimulationModuleDataType>("simulation_data").x;
-  double v = data->GetModuleData<SimulationModuleDataType>("simulation_data").v;
- 
-  _controls_data.u[0] = -5*x -3*v;
-  data->SetModuleData(_controls_data, "controls_data");
+  double x = data->GetModuleData("simulation_module").Get<double>("x");
+  double v = data->GetModuleData("simulation_module").Get<double>("v");
+
+  VectorXd u(3);
+  u << -5*x-3*v, 0, 0;
+  _module_data.Set<VectorXd>("u", u);
   
 }

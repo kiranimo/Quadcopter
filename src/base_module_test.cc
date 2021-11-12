@@ -16,7 +16,7 @@ TEST(BaseModuleTests, BasicFunctionality) {
   test_module.SetModuleRuntime(std::chrono::milliseconds(5));
   test_module.Loop(mdw, 1);
 
-  EXPECT_EQ(test_module._ctr, 2);
+  EXPECT_EQ(mdw->GetModuleData("test_module").Get<double>("ctr"), 2);
   EXPECT_EQ(test_module.GetModulePeriod(), std::chrono::milliseconds(5));
 }
 

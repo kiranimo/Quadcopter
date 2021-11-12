@@ -1,8 +1,10 @@
 #include "base_module.h"
+#include <thread>
 // Generic implementation of BaseModule
 
 void BaseModule::Init(std::shared_ptr<ModuleDataCollection> data) {
-  std::cout << "Initializing module: " << _module_name << "\n" << std::endl;
+  std::cout << "Initializing module: " << _module_name << std::endl;
+  data->AddModuleData(_module_data, _module_name);
 }
 
 // to be filled in by specific module
@@ -20,6 +22,8 @@ void BaseModule::Loop(std::shared_ptr<ModuleDataCollection> data, double time_ga
     now = std::chrono::steady_clock::now();
     auto elapsed_time = time_gain*(now-_start_time);
     Poll(data);
+    data->SetModuleData(_module_data, _module_name);
+    _module_data.LogTelemetry();
     
     // get time between iterations
     _dt_ms = std::chrono::duration_cast<

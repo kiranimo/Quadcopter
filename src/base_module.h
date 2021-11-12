@@ -5,21 +5,18 @@
 #include <iostream>
 #include <memory>
 #include <chrono>
-#include <thread>
 #include <ratio>
+#include <map>
+#include <string>
 #include "module_data.h"
-#include "telemetry_logging.h"
+#include "base_module_data.h"
 
-class BaseModuleData : public TelemetryLogging {
-
-};
 
 // Generic module type for all other modules to be derived from.
 class BaseModule {
   public:
-    // Generic template for initialization, should intialize the module
-    // specific datatype. 
-    virtual void Init(std::shared_ptr<ModuleDataCollection> data);
+    // Generic template for initialization
+    void Init(std::shared_ptr<ModuleDataCollection> data);
 
     // Generic function that calls Poll(), should be started by
     // the process managing all of the modules. Since Loop() calls
@@ -44,6 +41,8 @@ class BaseModule {
     // TODO: kirencaldwell - actually implement this freaking function
     double GetRuntimeMilliseconds();
 
+    BaseModuleData _module_data;
+
     // default runtime is 5 seconds
     std::chrono::milliseconds _total_runtime = std::chrono::milliseconds(5000);
     // default refresh rate is 200Hz
@@ -52,6 +51,8 @@ class BaseModule {
     std::chrono::time_point<std::chrono::steady_clock> _start_time;
     // time between calls to Poll (ms)
     double _dt_ms = 0.005;
+
+    bool _first_pass = true;
 
 };
 

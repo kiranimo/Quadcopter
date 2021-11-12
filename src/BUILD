@@ -5,17 +5,34 @@ cc_library(
     srcs = [
             "base_module.cc",
             "module_manager.cc",
-            "telemetry_logging.cc",
             ],
     hdrs = [
             "base_module.h",
             "module_manager.h",
             "module_data.h",
             "test_module.h",
-            "telemetry_logging.h",
+            ],
+    deps = [
+            "module_data",
             ],
     linkopts = ["-pthread"],
     visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "module_data",
+    srcs = [
+            "base_module_data.cc",
+            "signal.cc",
+            ],
+    hdrs = [
+            "base_module_data.h",
+            "signal.h",
+            "module_data.h",
+            ],
+    linkopts = ["-pthread"],
+    visibility = ["//visibility:public"],
+
 )
 
 test_suite(
@@ -24,9 +41,17 @@ test_suite(
            "module_data_test",
            "base_module_test",
            "module_manager_test",
+           "base_module_data_test",
            ],
 )
 
+cc_test(
+    name = "base_module_data_test",
+    size = "small",
+    srcs = ["base_module_data_test.cc",],
+    deps = ["@com_google_googletest//:gtest_main",
+            "//src:module_data"],
+)
 cc_test(
     name = "module_data_test",
     size = "small",

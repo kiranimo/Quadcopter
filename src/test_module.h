@@ -6,14 +6,14 @@ class TestModule : public BaseModule {
   public: 
     TestModule() {
        _module_name = "test_module";
+       _module_data.Add<double>("ctr", 0);
     }
-    void Init(std::shared_ptr<ModuleDataCollection> data) override {
-       _ctr = 0;
-    };
 
-    int _ctr;
   private:
     void Poll(std::shared_ptr<ModuleDataCollection> mdw) override {
-       _ctr++;
+      double ctr = mdw->GetModuleData(_module_name).Get<double>("ctr");
+      ctr++;
+      _module_data.Set<double>("ctr", ctr);
+
     };
 };
