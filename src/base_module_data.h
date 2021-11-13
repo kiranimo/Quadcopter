@@ -27,7 +27,7 @@ class BaseModuleData {
 
     template <typename T>
     void Set(std::string data_name, T value) {
-        _data[data_name].second = value;
+        Add(data_name, value);
     };
 
     template <typename T>
@@ -36,11 +36,13 @@ class BaseModuleData {
     };
 
     void LogTelemetry();
+    void WriteToCsv();
     
   protected:
     std::string _filename;
     bool _first_pass = true;
     std::map<std::string, std::pair<Signal, std::any>> _data;
+    std::string _buffer;
 };
 
 #endif

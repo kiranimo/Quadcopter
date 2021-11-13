@@ -35,6 +35,7 @@ void BaseModule::Loop(std::shared_ptr<ModuleDataCollection> data, double time_ga
     // wait until the next period start
     std::this_thread::sleep_until(next_start);
   }
+  _module_data.WriteToCsv();
 }
 
 // set the total runtime for this module

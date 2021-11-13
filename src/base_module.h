@@ -44,7 +44,7 @@ class BaseModule {
     BaseModuleData _module_data;
 
     // default runtime is 5 seconds
-    std::chrono::milliseconds _total_runtime = std::chrono::milliseconds(5000);
+    std::chrono::milliseconds _total_runtime = std::chrono::milliseconds(1000);
     // default refresh rate is 200Hz
     std::chrono::milliseconds _module_period_ms = std::chrono::milliseconds(5);
     // initial time module is started
@@ -53,6 +53,7 @@ class BaseModule {
     double _dt_ms = 0.005;
 
     bool _first_pass = true;
+    
 
 };
 
