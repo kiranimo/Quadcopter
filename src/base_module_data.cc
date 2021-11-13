@@ -21,8 +21,10 @@ void BaseModuleData::LogTelemetry() {
 }
 
 void BaseModuleData::WriteToCsv() {
+    std::cout << "Writing: " << _filename << std::endl;
     std::ofstream logfile;
     logfile.open(_filename);
+    std::cout << "file is open: " << logfile.is_open() << std::endl; 
     logfile << _buffer;
     logfile.close();
 }
