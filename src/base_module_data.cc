@@ -20,20 +20,14 @@ void BaseModuleData::LogTelemetry() {
     _buffer.append(out + "\n");
 }
 
-void BaseModuleData::WriteToCsv() {
-    std::cout << "Writing: " << _filename << std::endl;
+void BaseModuleData::WriteToCsv(std::string module_name) {
+    std::cout << "Writing: " << module_name << std::endl;
     std::ofstream logfile;
-    logfile.open(_filename);
+    logfile.open(module_name + ".csv");
     std::cout << "file is open: " << logfile.is_open() << std::endl; 
     logfile << _buffer;
     logfile.close();
 }
 
-BaseModuleData::BaseModuleData(std::string module_name) {
-    Init(module_name);
-}
 
-void BaseModuleData::Init(std::string module_name) {
-    _filename = module_name + ".csv";
-}
 

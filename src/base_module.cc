@@ -7,9 +7,6 @@ void BaseModule::Init(std::shared_ptr<ModuleDataCollection> data) {
   data->AddModuleData(_module_data, _module_name);
 }
 
-void BaseModule::InitModuleData() {
-  _module_data.Init(_module_name);
-}
 // to be filled in by specific module
 void BaseModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
 }
@@ -38,7 +35,7 @@ void BaseModule::Loop(std::shared_ptr<ModuleDataCollection> data, double time_ga
     // wait until the next period start
     std::this_thread::sleep_until(next_start);
   }
-  _module_data.WriteToCsv();
+  _module_data.WriteToCsv(_module_name);
 }
 
 // set the total runtime for this module

@@ -13,7 +13,6 @@ class BaseModuleData {
   public:
     BaseModuleData() {};
     BaseModuleData(std::string module_name);
-    void Init(std::string module_name);
 
     template <typename T>
     void Add(std::string data_name, T value) {
@@ -36,7 +35,7 @@ class BaseModuleData {
     };
 
     void LogTelemetry();
-    void WriteToCsv();
+    void WriteToCsv(std::string module_name);
     
   protected:
     std::string _filename;
