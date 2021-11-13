@@ -18,6 +18,8 @@ class BaseModule {
     // Generic template for initialization
     void Init(std::shared_ptr<ModuleDataCollection> data);
 
+    void InitModuleData();
+
     // Generic function that calls Poll(), should be started by
     // the process managing all of the modules. Since Loop() calls
     // Poll(), we need to pass the variable containing all of the module

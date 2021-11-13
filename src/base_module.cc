@@ -7,6 +7,9 @@ void BaseModule::Init(std::shared_ptr<ModuleDataCollection> data) {
   data->AddModuleData(_module_data, _module_name);
 }
 
+void BaseModule::InitModuleData() {
+  _module_data.Init(_module_name);
+}
 // to be filled in by specific module
 void BaseModule::Poll(std::shared_ptr<ModuleDataCollection> data) {
 }

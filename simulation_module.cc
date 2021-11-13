@@ -7,7 +7,7 @@ using Eigen::VectorXd;
 SimulationModule::SimulationModule() {
   _module_name = "simulation_module";
   _module_period_ms = std::chrono::milliseconds(1);
-  _module_data.Init(_module_name);
+  InitModuleData();
   _module_data.Add<double>("x", 1);
   _module_data.Add<double>("v", 0);
   _module_data.Add<double>("t", 0);

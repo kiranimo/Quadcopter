@@ -5,7 +5,7 @@ using Eigen::VectorXd;
 
 ControlsModule::ControlsModule() {
   _module_name = "controls_module";
-  _module_data.Init(_module_name);
+  InitModuleData();
   _module_data.Add<VectorXd>("u", VectorXd::Zero(3));
 }
 
